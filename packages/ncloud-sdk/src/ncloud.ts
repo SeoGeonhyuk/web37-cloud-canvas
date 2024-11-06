@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-interface ApiKey {
+export interface ApiKey {
     accessKey?: string;
     secretKey?: string;
 }
