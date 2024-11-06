@@ -1,2 +1,2 @@
-import { ncloud, ApiKey } from '@/ncloud';
+import { ncloud } from '../../ncloud';
 import { describe, expect, test } from 'vitest';
