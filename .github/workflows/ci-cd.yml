@@ -24,4 +24,5 @@ jobs:
                   chmod 600 dev_login.pem
                   ssh -t -i dev_login.pem ncloud@${{ secrets.NCP_DEV_INSTANCE }} -p ${{ secrets.NCP_DEV_INSTANCE_PORT }}
                   cd ~
+                  ls -la
                   ./docker.sh
