@@ -10,42 +10,7 @@ concurrency:
     group: cloud-canvas
 
 jobs:
-    CI:
-        runs-on: ubuntu-latest
-
-        steps:
-            - name: Check out repository
-              uses: actions/checkout@v3
-
-            - name: NCP registry login
-              uses: docker/login-action@v3
-              with:
-                  registry: ${{ secrets.NCP_REGISTRY }}
-                  username: ${{ secrets.NCP_ACCESS_KEY }}
-                  password: ${{ secrets.NCP_SECRET_KEY }}
-
-            - name: Docker front image build and push
-              uses: docker/build-push-action@v3
-              with:
-                  context: .
-                  file: ./apps/client/Dockerfile
-                  push: true
-                  tags: |
-                      cloud-canvas.kr.ncr.ntruss.com/front:dev
-                      cloud-canvas.kr.ncr.ntruss.com/front:${{ github.sha }}
-
-            - name: Docker back image build and push
-              uses: docker/build-push-action@v3
-              with:
-                  context: .
-                  file: ./apps/server/Dockerfile
-                  push: true
-                  tags: |
-                      cloud-canvas.kr.ncr.ntruss.com/back:dev
-                      cloud-canvas.kr.ncr.ntruss.com/back:${{ github.sha }}
-
     CD:
-        needs: CI
         runs-on: ubuntu-latest
 
         steps:
