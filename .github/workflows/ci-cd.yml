@@ -22,5 +22,5 @@ jobs:
               run: |
                   printf "%s" "${{ secrets.NCP_DEV_SSH }}" > dev_login.pem
                   chmod 600 dev_login.pem
-                  ssh -t -i dev_login.pem ncloud@${{ secrets.NCP_DEV_INSTANCE }} -p ${{ secrets.NCP_DEV_INSTANCE_PORT }} 'bash -l'
-                  ./docker.sh
+                  ssh -t -i dev_login.pem ncloud@${{ secrets.NCP_DEV_INSTANCE }} -p ${{ secrets.NCP_DEV_INSTANCE_PORT }}
+                  bash ./docker.sh
