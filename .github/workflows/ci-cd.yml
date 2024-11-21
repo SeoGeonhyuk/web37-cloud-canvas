@@ -16,6 +16,7 @@ jobs:
         steps:
             - name: Add SSH known hosts
               run: |
+                  mkdir -p ~/.ssh
                   ssh-keyscan -p ${{ secrets.NCP_DEV_INSTANCE_PORT }} ${{ secrets.NCP_DEV_INSTANCE }} >> ~/.ssh/known_hosts
             - name: SSH login and deploy
               run: |
