@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@/components/Button';
+import { Button } from '@/ui/Button';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 

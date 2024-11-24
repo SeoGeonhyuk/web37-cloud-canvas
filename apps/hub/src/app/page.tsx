@@ -1,13 +1,6 @@
-import { Architectures } from '@/components/Architectures';
-import { Pagination } from '@/components/Pagination';
-import { SearchBar } from '@/components/SearchBar';
+'use client';
+import { ArchitectureBoard } from '@/components/ArchitectureBoard';
 
 export default function Home() {
-    return (
-        <>
-            <SearchBar />
-            <Architectures />
-            <Pagination />
-        </>
-    );
+    return <ArchitectureBoard />;
 }

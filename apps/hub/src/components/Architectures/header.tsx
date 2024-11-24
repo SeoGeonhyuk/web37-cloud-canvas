@@ -1,45 +1,45 @@
-export const ArchitectureHeader = () => {
-    const data = [
-        {
-            title: 'Architecture',
-        },
-        {
-            title: 'AUTHOR',
-        },
-        {
-            title: 'DATE',
-        },
-        {
-            title: 'STARS',
-        },
-        {
-            title: 'COST',
-        },
-        {
-            title: 'IMPORTS',
-        },
+import { ArrowDownIcon } from '@/ui/ArrowDownIcon';
+import { ArrowUpIcon } from '@/ui/ArrowUpIcon';
+import { SortIcon } from '@/ui/SortIcon';
+
+interface ArchitectureHeaderProps {
+    onSort: (column: string) => void;
+    sort?: string;
+    order?: 'asc' | 'desc';
+}
+
+export const ArchitectureHeader = ({
+    onSort,
+    sort,
+    order,
+}: ArchitectureHeaderProps) => {
+    const columns = [
+        { key: 'name', title: 'Architecture', width: 'w-full' },
+        { key: 'cost', title: 'Costs', width: 'w-40' },
+        { key: 'imports', title: 'Imports', width: 'w-40' },
+        { key: 'stars', title: 'Stars', width: 'w-40' },
     ];
 
-    // const handleSort = () => {
-    //     // Sorting logic here
-    // };
+    const getSortIcon = (columnKey: string) => {
+        if (sort === columnKey) {
+            if (order === 'asc') return <ArrowUpIcon size={10} />;
+            if (order === 'desc') return <ArrowDownIcon size={10} />;
+        }
+        return <SortIcon />;
+    };
 
     return (
-        <div className="bg-gray-50 flex border-b p-3 font-semibold">
-            <div className="w-full">Architecture</div>
-            <div className="flex items-center">
-                <div className="w-24">Costs</div>
-                <div className="w-24">Imports</div>
-                <div className="w-24">Stars</div>
-            </div>
-            {/* {data.map((item) => (
+        <div className="bg-gray-50 flex border-b p-3 pl-4 font-semibold">
+            {columns.map((column) => (
                 <div
-                    key={item.title}
-                    className="p-4 border-b cursor-pointer hover:bg-gray-100 text-left"
+                    key={column.key}
+                    className={`${column.width} cursor-pointer hover:bg-gray-100 flex items-center gap-1`}
+                    onClick={() => onSort(column.key)}
                 >
-                    {item.title}
+                    <span>{column.title}</span>
+                    <span>{getSortIcon(column.key)}</span>
                 </div>
-            ))} */}
+            ))}
         </div>
     );
 };

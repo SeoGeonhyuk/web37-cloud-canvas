@@ -4,7 +4,6 @@ on:
         branches:
             - development
         types: [closed]
-    workflow_dispatch:
 
 concurrency:
     group: cloud-canvas

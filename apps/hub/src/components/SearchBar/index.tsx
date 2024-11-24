@@ -2,11 +2,20 @@
 import { useState } from 'react';
 import { SearchIcon } from './SearchIcon';
 
-export const SearchBar = () => {
+export const SearchBar = ({
+    onSearch,
+}: {
+    onSearch: (keyword: string) => void;
+}) => {
     const [keyword, setKeyword] = useState('');
 
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        onSearch(keyword);
+    };
+
     return (
-        <div className="flex mx-auto max-w-xl m-10">
+        <form onSubmit={handleSubmit} className="flex mx-auto max-w-xl m-10">
             <input
                 type="text"
                 placeholder="검색어를 입력하세요"
@@ -14,9 +23,12 @@ export const SearchBar = () => {
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
             />
-            <button className="bg-blue-700 text-white px-4 rounded-r-xl">
+            <button
+                type="submit"
+                className="bg-blue-700 text-white px-4 rounded-r-xl"
+            >
                 <SearchIcon />
             </button>
-        </div>
+        </form>
     );
 };
