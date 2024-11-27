@@ -16,13 +16,12 @@ jobs:
             - name: Setup Node.js
             - uses: pnpm/action-setup@v2
               with:
-                version: 9.12.3
+                  version: 9.12.3
             - uses: actions/setup-node@v4
               with:
-                node-version: '20'
-                cache: 'pnpm'
+                  node-version: '20'
+                  cache: 'pnpm'
             - run: pnpm install
-
 
             - name: Build the project
               run: pnpm build
