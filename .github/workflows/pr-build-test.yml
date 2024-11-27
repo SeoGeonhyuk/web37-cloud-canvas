@@ -4,26 +4,35 @@ on:
   pull_request:
     branches:
       - development
-    types: [opened]
+    types:
+      - opened
 
 jobs:
   build-test:
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repository
       - name: Check out repository
         uses: actions/checkout@v3
 
+      # Setup Node.js environment with caching for pnpm
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
           cache: 'pnpm'
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      # Install pnpm globally if not cached
+      - name: Ensure pnpm is installed
+        run: |
+          if ! command -v pnpm &>/dev/null; then
+            npm install -g pnpm
+          fi
 
+      # Install project dependencies using pnpm
       - name: Install dependencies with pnpm
         run: pnpm install
 
+      # Build the project using pnpm
       - name: Build the project
         run: pnpm build
